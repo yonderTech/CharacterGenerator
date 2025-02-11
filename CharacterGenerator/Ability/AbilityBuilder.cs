@@ -25,11 +25,11 @@ namespace CharacterGenerator
 
                     var d100 = rnd.Next(1, 101);
                     var d20 = rnd.Next(1, 21);
-
-                    var line = records.SingleOrDefault(x => x.Score == ability.Value.ToString() ||
-                        Regex.Match(x.Score!, $"{ability.Value}--[0-9]+|[0-9]+--{ability.Value}").Length > 0 ||
-                        x.Score == "18" && x.D100Min >= d100 && x.D100Max <= d100 && x.D20Min >= d20 && x.D20Max <= d20
-                    );
+                    
+                    var line = records.SingleOrDefault(x => 
+                        (ability.Value != 18 && ability.Value >= x.ScoreMin && ability.Value <= x.ScoreMax) || 
+                        (ability.Value == 18 && ability.Value >= x.ScoreMin && ability.Value <= x.ScoreMax && d100 >= x.D100Min && d100 <= x.D100Max))!;
+                    
                     if (line == null)
                     {
                         throw new Exception($"Could not find STR perk rule line for value: {abilityType}");

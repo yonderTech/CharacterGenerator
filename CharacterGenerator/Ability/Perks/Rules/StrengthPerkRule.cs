@@ -23,7 +23,8 @@ namespace CharacterGenerator
             return base.Load();
         }
 
-        public string? Score { get; set; }
+        public int ScoreMin { get; set; }
+        public int ScoreMax { get; set; }
         public int D100Min { get; set; }
         public int D100Max { get; set; }
         public int HitProb { get; set; }
@@ -31,8 +32,6 @@ namespace CharacterGenerator
         public int WeightAllow { get; set; }
         public int MaxPress { get; set; }
         public int OpenDoors { get; set; }
-        public int D20Min { get; set; }
-        public int D20Max { get; set; }
         public string? BendBarsLiftGates { get; set; }
 
     }
